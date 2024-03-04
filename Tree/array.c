@@ -6,14 +6,13 @@
 
 void resize(array *arr) {
   arr->capacity *= MULTIPLIER;
-  arr->index = (int *)realloc(arr->index, arr->capacity);
+  arr->index = (int *)realloc(arr->index,arr->capacity*sizeof(int));
 }
 
 void add_element(array *self, const int value) {
-  if (self->size == self->capacity) {
-    resize(self);
-  }
-  self->index[(self->size++)] = value;
+  if (self->size == self->capacity) 
+      resize(self);
+  self->index[self->size++] = value;
 }
 
 void read_file(array *self, FILE *file_ptr) {
